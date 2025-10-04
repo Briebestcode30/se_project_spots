@@ -1,16 +1,5 @@
 .footer {
-  font-weight: 400;
-  line-height: 100%;
-  font-size: 16px;
-  width: 104;
-  height: 16px;
-  opacity: 1;
-  top: 1340px;
-  left: 668px;
-  padding: 16px 8px 16px 8px;
-  text-align: center;
-  border-top: 1px solid #21212166;
-  padding: 20px;
+  padding: 60px 0;
   display: flex;
   justify-content: center;
 }
@@ -19,10 +8,7 @@
   margin: 0;
   font-family: Poppins, Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-style: Regular;
   font-size: 16px;
   line-height: 100%;
-  letter-spacing: 0%;
-  font-size: 14px;
-  color: #212121;
+  color: rgba(33, 33, 33, 0.7);
 }
