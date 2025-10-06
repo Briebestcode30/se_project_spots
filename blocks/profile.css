@@ -57,9 +57,10 @@
   gap: 8px;
   opacity: 0.7;
   cursor: pointer;
+  padding: 0;
 }
 
-.button:hover {
+.profile__edit-btn:hover {
   opacity: 1;
 }
 
@@ -80,9 +81,10 @@
   height: 52px;
   padding: 0;
   cursor: pointer;
+  border-radius: 8px;
 }
 
-.button:hover {
+.profile__add-btn:hover {
   opacity: 0.8;
 }
 
