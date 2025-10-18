@@ -1,0 +1,92 @@
+.modal {
+  background-color: #00000080;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  visibility: hidden;
+}
+
+.modal__is-opened {
+  background-color: #ffffff;
+  visibility: visible;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  opacity: 1;
+  border-radius: 8px;
+  max-width: 730;
+  height: 400;
+}
+
+.modal__container {
+  max-width: 730px;
+  border-radius: 8px;
+  position: relative;
+  padding: 32px 207px;
+  background-color: #ffffff;
+  margin: 0 0 32px;
+}
+
+.modal__close-btn {
+  position: absolute;
+  top: 32px;
+  right: 50px;
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border: none;
+  background-image: url(../images/close-icon.svg) no repeat;
+}
+
+.modal__title {
+  margin: 0 0 32px;
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 100%;
+  color: #212121;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__label {
+  margin: 0 0 32px;
+}
+
+.modal__input {
+  display: flex;
+  margin: 8px 0 0;
+  width: 630;
+  height: 52;
+  opacity: 1;
+  padding-top: 16px;
+  padding-right: 12px;
+  padding-bottom: 16px;
+  padding-left: 12px;
+  gap: 10px;
+  border-radius: 8px;
+  border-width: 1px;
+}
+
+.modal__input::placeholder {
+  color: #2121214d;
+}
+
+.modal__submit-btn {
+  max-width: 156px;
+  background-color: #212121;
+  border-radius: 8px;
+  padding: 10px;
+  color: #fcf5e5;
+}
