@@ -1,5 +1,5 @@
 .modal {
-  background-color: #00000080;
+  background: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
   right: 0;
@@ -12,8 +12,7 @@
   visibility: hidden;
 }
 
-.modal__is-opened {
-  background-color: #ffffff;
+.modal_is-opened {
   visibility: visible;
   position: fixed;
   display: flex;
@@ -43,7 +42,8 @@
   height: 40px;
   background-color: #ffffff;
   border: none;
-  background-image: url(../images/close-icon.svg) no repeat;
+  background-image: url(../images/close-icon.svg);
+  background-repeat: no-repeat;
 }
 
 .modal__title {
