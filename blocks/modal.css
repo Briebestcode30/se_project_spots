@@ -10,8 +10,6 @@
   align-items: center;
   padding: 10px;
   visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.5s linear;
 }
 
 .modal_is-opened {
@@ -47,6 +45,7 @@
   border: none;
   background-image: url(../images/close-icon.svg);
   background-repeat: no-repeat;
+  transition: opacity 0.5s linear;
 }
 
 .modal__title {

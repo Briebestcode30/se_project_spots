@@ -22,7 +22,7 @@ editProfileBtn.addEventListener("click", function () {
   const editProfileDescriptionInput = document.querySelector(
     "#profile-description-input"
   );
-  /* TODO fill description-input*/
+  editProfileDescriptionInput.value = profileDescriptionEl.textContent;
   editProfileModal.classList.add("modal_is-opened");
 });
 
@@ -31,7 +31,6 @@ editProfileCloseBtn.addEventListener("click", function () {
 });
 
 newPostBtn.addEventListener("click", function () {
-  const newPostModal = document.querySelector("#new-post-modal");
   newPostModal.classList.add("modal_is-opened");
 });
 
@@ -42,15 +41,16 @@ newPostCloseBtn.addEventListener("click", function () {
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   profileNameEl.textContent = editProfileNameInput.value;
-  /*TODO-- handle the other input*/
+  profileDescriptionEl.textContent = editProfileDescriptionInput.value; // ✅ Updates the profile description
   editProfileModal.classList.remove("modal_is-opened");
 }
 
-editProfileForm.addEventListener("submit");
+editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
   newPostModal.classList.remove("modal_is-opened");
 }
 
-newPostModal.addEventListener("insert");
+const newPostForm = newPostModal.querySelector(".modal__form");
+newPostForm.addEventListener("submit", handleNewPostSubmit);
