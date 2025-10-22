@@ -47,10 +47,10 @@ function handleEditProfileSubmit(evt) {
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
-function handleNewPostSubmit(evt) {
+function handleAddCardSubmit(evt) {
   evt.preventDefault();
   newPostModal.classList.remove("modal_is-opened");
 }
 
 const newPostForm = newPostModal.querySelector(".modal__form");
-newPostForm.addEventListener("submit", handleNewPostSubmit);
+newPostForm.addEventListener("submit", handleAddCardSubmit);
