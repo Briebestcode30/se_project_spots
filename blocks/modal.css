@@ -10,6 +10,9 @@
   align-items: center;
   padding: 10px;
   visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: visibility 0.3s ease, opacity 0.3s ease;
 }
 
 .modal_is-opened {
@@ -20,21 +23,29 @@
   align-items: center;
   padding: 10px;
   border-radius: 8px;
-  max-width: 730;
-  height: 400;
+  max-width: 730px;
+  height: 400px;
   background-repeat: no-repeat;
   opacity: 1;
   transform: scale(1);
   pointer-events: auto;
+  opacity: 1;
 }
 
 .modal__container {
   max-width: 730px;
   border-radius: 8px;
   position: relative;
-  padding: 32px 207px;
+  padding: 30px 50px;
+  box-sizing: border-box;
   background-color: #ffffff;
   margin: 0 0 32px;
+}
+
+@media screen and (max-width: 627px) {
+  .modal__container {
+    padding: 22px 12px 12px;
+  }
 }
 
 .modal__close-btn {
@@ -48,16 +59,16 @@
   background-image: url(../images/close-icon.svg);
   background-repeat: no-repeat;
   transition: opacity 0.5s linear;
+  cursor: pointer;
 }
 
 .modal__close-btn:hover {
   opacity: 0.6;
-  cursor: pointer;
 }
 
 .modal__title {
   margin: 0 0 32px;
-  font-family: Poppins;
+  font-family: "Poppins", Ariel, sans-serif;
   font-weight: 500;
   font-size: 32px;
   line-height: 100%;
@@ -76,16 +87,16 @@
 .modal__input {
   display: flex;
   margin: 8px 0 0;
-  width: 630;
-  height: 52;
+  width: 100%;
+  box-sizing: border-box;
+  height: 52px;
   opacity: 1;
-  padding-top: 16px;
-  padding-right: 12px;
-  padding-bottom: 16px;
-  padding-left: 12px;
+  padding: 16px 12px;
   gap: 10px;
   border-radius: 8px;
   border-width: 1px;
+  border: 1px solid rgba(33, 33, 33, 0, 4);
+  font-size: 20px;
 }
 
 .modal__input::placeholder {
@@ -98,4 +109,9 @@
   border-radius: 8px;
   padding: 10px;
   color: #fcf5e5;
+  cursor: pointer;
+}
+
+.modal__submit-btn:hover {
+  opacity: 0.8;
 }
