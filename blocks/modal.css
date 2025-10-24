@@ -11,25 +11,15 @@
   padding: 10px;
   visibility: hidden;
   opacity: 0;
-  pointer-events: none;
   transition: visibility 0.3s ease, opacity 0.3s ease;
+  max-width: 730px 408px;
+  pointer-events: none;
 }
 
 .modal_is-opened {
   visibility: visible;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  border-radius: 8px;
-  max-width: 730px;
-  height: 400px;
-  background-repeat: no-repeat;
   opacity: 1;
-  transform: scale(1);
-  pointer-events: auto;
-  opacity: 1;
+  pointer-events: all;
 }
 
 .modal__container {
