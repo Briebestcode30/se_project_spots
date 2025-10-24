@@ -1,7 +1,11 @@
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
+const newPostImageInput = newPostModal.querySelector("#card-image-input");
+const newPostCaptionInput = newPostModal.querySelector(
+  "#profile-caption-input"
+);
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
-const editProfileForm = editProfileModal.querySelector(".modal__form");
+const profileForm = document.forms["profile-form"];
 const editProfileNameInput = editProfileModal.querySelector(
   "#profile-name-input"
 );
@@ -35,7 +39,6 @@ editProfileCloseBtn.addEventListener("click", function () {
 });
 
 newPostBtn.addEventListener("click", function () {
-  newPostModal.classList.add("modal_is-opened");
   openModal(newPostModal);
 });
 
@@ -54,10 +57,8 @@ editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  const imageInput = newPostModal.querySelector("#card-image-input");
-  const captionInput = newPostModal.querySelector("#profile-caption-input");
-  console.log(imageInput.value, captionInput.value);
-  newPostModal.classList.remove("modal_is-opened");
+  console.log(newPostImageInput.value, newPostCaptionInput.value);
+  closeModal(newPostModal);
 }
 
 const newPostForm = newPostModal.querySelector(".modal__form");
