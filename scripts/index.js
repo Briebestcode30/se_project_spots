@@ -30,6 +30,7 @@ function closeModal(modal) {
 }
 
 editProfileBtn.addEventListener("click", function () {
+  editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
   openModal(editProfileModal);
 });
@@ -53,7 +54,7 @@ function handleEditProfileSubmit(evt) {
   closeModal(editProfileModal);
 }
 
-editProfileBtn.addEventListener("submit", handleEditProfileSubmit);
+profileForm.addEventListener("submit", handleEditProfileSubmit);
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
