@@ -11,6 +11,7 @@
   transition: visibility 0.3s ease, opacity 0.3s ease;
   pointer-events: none;
   z-index: 1000;
+  max-width: 100%;
 }
 
 .modal_is-opened {
