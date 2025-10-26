@@ -25,7 +25,6 @@
   border-radius: 8px;
   position: relative;
   width: 730px;
-  min-height: 408px;
   padding: 32px 50px;
   box-sizing: border-box;
   display: flex;
@@ -40,7 +39,7 @@
   right: 32px;
   width: 24px;
   height: 24px;
-  background: url("../images/close-icon.svg") no-repeat center / contain;
+  background: url(../images/close_icon.svg) no-repeat center / contain;
   border: none;
   cursor: pointer;
   transition: opacity 0.3s ease;
