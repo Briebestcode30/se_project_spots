@@ -14,6 +14,10 @@
   max-width: 100%;
 }
 
+.modal_type_preview {
+  padding: 0 16px;
+}
+
 .modal_is-opened {
   visibility: visible;
   opacity: 1;
@@ -102,6 +106,43 @@
   opacity: 0.8;
 }
 
+.modal__image {
+  max-width: 80vw;
+  max-height: 80vh;
+  width: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
+}
+
+.modal__image-container {
+  position: relative;
+}
+
+.modal__caption {
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 16px;
+  color: #fff;
+  text-align: left;
+  margin-top: 8px;
+}
+
+.modal__close_type_preview {
+  background: url(../images/close_light_icon.svg) no-repeat center / contain;
+  position: absolute;
+  top: -32px;
+  right: -52.5px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.modal__close_type_preview:hover {
+  opacity: 0.6;
+}
+
 @media screen and (max-width: 480px) {
   .modal__container {
     max-width: 320px;
@@ -130,5 +171,16 @@
     right: 16px;
     width: 20px;
     height: 20px;
+  }
+}
+
+@media screen and (max-width: 627px) {
+  .modal__close_type_preview {
+    top: -48px;
+    right: 0;
+  }
+
+  .modal__image {
+    max-width: unset;
   }
 }
