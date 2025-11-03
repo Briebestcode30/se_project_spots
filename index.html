@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./pages/index.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
+
   <body>
     <div class="page">
       <header class="header">
@@ -34,6 +35,7 @@
 
         <section class="cards page__section">
           <ul class="cards__list"></ul>
+
           <template id="card-template">
             <li class="card">
               <button class="card__delete-button" type="button"></button>
@@ -42,7 +44,6 @@
                 <h2 class="card__title"></h2>
                 <div class="card__buttons">
                   <button type="button" class="card__like-btn"></button>
-                  <button type="button" class="card__delete-btn"></button>
                 </div>
               </div>
             </li>
@@ -122,44 +123,16 @@
         </div>
       </div>
 
-      <div class="modal" id="preview-image-modal">
+      <div class="modal modal_type_preview" id="preview-image-modal">
         <div class="modal__container modal__container_type_preview">
           <button
             type="button"
-            class="modal__close-btn"
+            class="modal__close-btn modal__close_type_preview"
             aria-label="Close preview"
           ></button>
-          <img src="" alt="" class="modal__image" />
+          <img src="#" alt="" class="modal__image" />
           <p class="modal__caption"></p>
         </div>
-      </div>
-    </div>
-
-    <div class="modal modal_type_preview modal_is-opened" id="preview-modal">
-      <div class="modal__container">
-        <button
-          type="button"
-          class="modal__close-btn"
-          aria-label="Close modal"
-        ></button>
-        <img
-          src="https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
-          alt=""
-          class="modal__image"
-        />
-        <p class="modal__caption">Golden Gate Bridge</p>
-      </div>
-    </div>
-
-    <div class="modal" id="preview-image-modal">
-      <div class="modal__container modal__close modal__container_type_preview">
-        <button
-          type="button"
-          class="modal__close-btn"
-          aria-label="Close preview"
-        ></button>
-        <img src="" alt="" class="modal__image" />
-        <p class="modal__caption"></p>
       </div>
     </div>
 
