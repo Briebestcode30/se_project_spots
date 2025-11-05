@@ -40,9 +40,9 @@
 .modal__close-btn {
   position: absolute;
   top: 32px;
-  right: 32px;
-  width: 24px;
-  height: 24px;
+  right: 50px;
+  width: 40px;
+  height: 40px;
   background: url(../images/close_icon.svg) no-repeat center / contain;
   border: none;
   cursor: pointer;
@@ -120,40 +120,28 @@
 }
 
 .modal__caption {
-  font-family: "Poppins", Arial, sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  color: #ffffff;
-  text-align: left;
-  background: transparent;
-  padding: 8px 12px;
-  border-radius: 0 0 8px 8px;
-  width: 100%;
-  box-sizing: border-box;
   margin: 0;
+  padding: 4px 8px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #fff;
+  position: absolute;
+  background-color: #212121;
+  border-radius: 8px;
+  left: 0;
+  top: calc(100% + 10px);
 }
 
-.modal__container_type_preview {
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+.modal__container-preview {
   position: relative;
-  background-image: url(../images/close_icon.svg) no-repeat;
-  position: absolute;
-  color: #ffffff;
 }
 
 .modal__close_type_preview {
-  background: url(../images/close_light_icon.svg) no-repeat center / contain;
+  background: url(../images/close_icon.svg) no-repeat center / contain;
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
+  top: 0;
+  right: -40px;
   border: none;
   cursor: pointer;
   transition: opacity 0.3s ease;
@@ -167,7 +155,7 @@
 @media screen and (max-width: 480px) {
   .modal__container {
     max-width: 320px;
-    padding: 24px 16px;
+    padding: 22px 12px 12px;
     border-radius: 8px;
   }
 
@@ -178,17 +166,14 @@
 
   .modal__caption {
     font-size: 16px;
-    padding: 10px 12px;
   }
 
   .modal__input {
-    height: 44px;
     font-size: 14px;
   }
 
   .modal__submit-btn {
     width: 100%;
-    padding: 12px;
     font-size: 16px;
   }
 
