@@ -121,10 +121,16 @@
 
 .modal__caption {
   font-family: "Poppins", Arial, sans-serif;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 400;
   color: #ffffff;
-  text-align: center;
-  margin-top: 8px;
+  text-align: left;
+  background: transparent;
+  padding: 8px 12px;
+  border-radius: 0 0 8px 8px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 .modal__container_type_preview {
@@ -136,18 +142,22 @@
   align-items: center;
   gap: 8px;
   position: relative;
+  background-image: url(../images/close_icon.svg) no-repeat;
+  position: absolute;
+  color: #ffffff;
 }
 
 .modal__close_type_preview {
   background: url(../images/close_light_icon.svg) no-repeat center / contain;
   position: absolute;
-  top: -32px;
-  right: -52.5px;
+  top: 16px;
+  right: 16px;
   width: 32px;
   height: 32px;
   border: none;
   cursor: pointer;
   transition: opacity 0.3s ease;
+  z-index: 5;
 }
 
 .modal__close_type_preview:hover {
@@ -164,6 +174,11 @@
   .modal__title {
     font-size: 24px;
     margin-bottom: 20px;
+  }
+
+  .modal__caption {
+    font-size: 16px;
+    padding: 10px 12px;
   }
 
   .modal__input {
@@ -189,6 +204,7 @@
   .modal__close_type_preview {
     top: -48px;
     right: 0;
+    padding: 0;
   }
 
   .modal__image {
