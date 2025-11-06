@@ -137,8 +137,8 @@
   position: relative;
 }
 
-.modal__close_type_preview {
-  background: url(../images/close_icon.svg) no-repeat center / contain;
+.modal__close-btn_type_preview {
+  background: url(../images/close__icon-light.svg) no-repeat center / contain;
   position: absolute;
   top: 0;
   right: -40px;
@@ -148,7 +148,7 @@
   z-index: 5;
 }
 
-.modal__close_type_preview:hover {
+.modal__close-btn_type_preview:hover {
   opacity: 0.6;
 }
 
@@ -180,8 +180,6 @@
   .modal__close-btn {
     top: 16px;
     right: 16px;
-    width: 20px;
-    height: 20px;
   }
 }
 
