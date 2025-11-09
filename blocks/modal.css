@@ -161,6 +161,10 @@
   display: block;
 }
 
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0.6);
+}
+
 @media screen and (max-width: 480px) {
   .modal__container {
     max-width: 320px;
