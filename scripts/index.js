@@ -72,7 +72,7 @@ function handleEscClose(evt) {
 
 document.querySelectorAll(".modal").forEach((modal) => {
   modal.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("modal_opened")) {
+    if (evt.target === modal) {
       closeModal(modal);
     }
   });
@@ -100,7 +100,6 @@ profileForm.addEventListener("submit", (evt) => {
 });
 
 newPostBtn.addEventListener("click", () => {
-  resetValidation(newPostForm, settings);
   openModal(newPostModal);
 });
 

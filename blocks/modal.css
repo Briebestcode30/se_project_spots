@@ -141,7 +141,6 @@
 .modal__close-btn_type_preview {
   background: url(../images/close__icon-light.svg) no-repeat center / contain;
   position: absolute;
-  top: 0;
   right: -40px;
   border: none;
   cursor: pointer;
@@ -157,13 +156,22 @@
   display: block;
   color: #ff0000b2;
   margin-top: 8px;
-  display: block;
-  font-size: 16px;
   font-family: "poppins", Arial, sans-serif;
+  font-size: 16px;
+}
+
+.modal__error_visible {
+  display: block;
 }
 
 .modal__input_type_error {
-  border: 1px solid rgba(255, 0, 0.6);
+  border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
+.modal__button_disabled {
+  background: url(../images/disabled-btn_\ Large.svg);
+  color: rgba(33, 33, 33, 1);
+  border: none;
 }
 
 @media screen and (max-width: 480px) {
