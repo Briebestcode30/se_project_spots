@@ -31,7 +31,6 @@ const initialCards = [
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const profileForm = document.querySelector("#profile-form");
 const profileNameInput = document.querySelector("#profile-name-input");
 const profileDescInput = document.querySelector("#profile-description-input");
@@ -40,13 +39,11 @@ const profileDescEl = document.querySelector(".profile__description");
 
 const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
-const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostForm = document.querySelector("#new-post-form");
 const newPostImageInput = document.querySelector("#card-image-input");
 const newPostCaptionInput = document.querySelector("#card-caption-input");
 
 const previewModal = document.querySelector("#preview-image-modal");
-const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
 const previewImage = previewModal.querySelector(".modal__image");
 const previewCaption = previewModal.querySelector(".modal__caption");
 
