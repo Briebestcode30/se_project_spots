@@ -1,16 +1,15 @@
-import Api from "../utils/Api.js";
-import "../pages/index.css";
+import "./index.css";
 
-import avatarImg from "../images/avatar.jpg";
-import logoImg from "../images/Logo.png";
+import { enableValidation, resetValidation } from "../scripts/validation.js";
 
-const api = new Api({
-  baseUrl: "https://example.com",
-  headers: { "Content-Type": "application/json" },
-});
-
-document.querySelector(".profile__avatar").src = avatarImg;
-document.querySelector(".header__logo").src = logoImg;
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-btn",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
 
 const initialCards = [
   {
@@ -160,77 +159,6 @@ function openImagePreview(data) {
   previewImage.alt = data.name;
   previewCaption.textContent = data.name;
   openModal(previewModal);
-}
-
-const settings = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__submit-btn",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-
-function showInputError(form, input, msg, config) {
-  const errorEl = form.querySelector(`#${input.id}-error`);
-  input.classList.add(config.inputErrorClass);
-  errorEl.textContent = msg;
-  errorEl.classList.add(config.errorClass);
-}
-
-function hideInputError(form, input, config) {
-  const errorEl = form.querySelector(`#${input.id}-error`);
-  input.classList.remove(config.inputErrorClass);
-  errorEl.classList.remove(config.errorClass);
-  errorEl.textContent = "";
-}
-
-function checkInputValidity(form, input, config) {
-  if (!input.validity.valid)
-    showInputError(form, input, input.validationMessage, config);
-  else hideInputError(form, input, config);
-}
-
-function hasInvalidInput(inputList) {
-  return inputList.some((input) => !input.validity.valid);
-}
-
-function toggleButtonState(inputList, button, config) {
-  if (hasInvalidInput(inputList)) {
-    button.classList.add(config.inactiveButtonClass);
-    button.disabled = true;
-  } else {
-    button.classList.remove(config.inactiveButtonClass);
-    button.disabled = false;
-  }
-}
-
-function setEventListeners(form, config) {
-  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
-  const button = form.querySelector(config.submitButtonSelector);
-
-  toggleButtonState(inputList, button, config);
-  inputList.forEach((input) => {
-    input.addEventListener("input", () => {
-      checkInputValidity(form, input, config);
-      toggleButtonState(inputList, button, config);
-    });
-  });
-}
-
-function enableValidation(config) {
-  Array.from(document.querySelectorAll(config.formSelector)).forEach((form) => {
-    form.addEventListener("submit", (evt) => evt.preventDefault());
-    setEventListeners(form, config);
-  });
-}
-
-function resetValidation(form, config) {
-  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
-  const button = form.querySelector(config.submitButtonSelector);
-
-  inputList.forEach((input) => hideInputError(form, input, config));
-  toggleButtonState(inputList, button, config);
 }
 
 enableValidation(settings);
