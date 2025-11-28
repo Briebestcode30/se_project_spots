@@ -1,3 +1,16 @@
+import "./index.css";
+
+import { enableValidation, resetValidation } from "../scripts/validation.js";
+
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-btn",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
 const initialCards = [
   {
     name: "Golden Gate Bridge",
@@ -156,3 +169,5 @@ function openImagePreview(data) {
   previewCaption.textContent = data.name;
   openModal(previewModal);
 }
+
+enableValidation(settings);
