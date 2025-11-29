@@ -1,7 +1,7 @@
 import "./index.css";
 
 import { enableValidation, resetValidation } from "../scripts/validation.js";
-
+import Api from "../scripts/Api.js";
 const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -41,6 +41,21 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
   },
 ];
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "f9c36c82-4848-4bdf-9403-6c4b1fd1762a",
+    "Content-Type": "application/json",
+  },
+});
+
+api.getInitialCards().then((cards) => {
+  cards.forEach((item) => {
+    const cardEl = getCardElement(item);
+    cardList.append(cardEl);
+  });
+});
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -157,11 +172,6 @@ function getCardElement(data) {
 
   return cardElement;
 }
-
-initialCards.forEach((item) => {
-  const cardElement = getCardElement(item);
-  cardsContainer.prepend(cardElement);
-});
 
 function openImagePreview(data) {
   previewImage.src = data.link;
