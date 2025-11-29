@@ -2,7 +2,7 @@ const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
-  inactiveButtonClass: "modal__button_disabled",
+  inactiveButtonClass: "modal__submit-btn_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
@@ -66,6 +66,7 @@ function setEventListeners(formElement, config) {
 
 function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
+
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", (evt) => evt.preventDefault());
     setEventListeners(formElement, config);
@@ -78,9 +79,10 @@ function resetValidation(formElement, config) {
   );
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
-  inputList.forEach((inputElement) =>
-    hideInputError(formElement, inputElement, config)
-  );
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement, config);
+  });
+
   toggleButtonState(inputList, buttonElement, config);
 }
 

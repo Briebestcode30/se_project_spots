@@ -1,28 +1,31 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: "./src/pages/index.js",
+
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.[contenthash].js",
-    clean: true,
+    filename: "main.[contenthash].js",
     assetModuleFilename: "assets/[hash][ext][query]",
+    clean: true,
   },
-  devtool: "source-map",
+
+  mode: "development",
+
   devServer: {
-    static: "./dist",
+    static: path.join(__dirname, "dist"),
+    port: 3000,
     open: true,
     hot: true,
-    port: 3000,
   },
+
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -30,35 +33,31 @@ module.exports = {
       },
 
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
 
       {
-        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
       },
 
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        test: /\.(woff|woff2|ttf|eot)$/i,
         type: "asset/resource",
       },
     ],
   },
-  optimization: {
-    minimizer: [`...`, new CssMinimizerPlugin()],
-  },
+
   plugins: [
     new CleanWebpackPlugin(),
+
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+    }),
+
     new MiniCssExtractPlugin({
       filename: "styles.[contenthash].css",
     }),
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      favicon: "./src/images/favicon.ico",
-    }),
   ],
-  resolve: {
-    extensions: [".js"],
-  },
 };
