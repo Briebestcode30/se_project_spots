@@ -16,14 +16,16 @@
       <section class="profile page__section">
         <img
           src="./images/avatar.jpg"
-          alt="Profile photo of Bessie Coleman"
+          alt="Profile photo"
           class="profile__avatar"
         />
+
         <div class="profile__column">
           <h1 class="profile__name">Bessie Coleman</h1>
           <p class="profile__description">Civil Aviator</p>
           <button type="button" class="profile__edit-btn">Edit profile</button>
         </div>
+
         <button type="button" class="profile__add-btn">New post</button>
       </section>
 
@@ -37,7 +39,9 @@
               type="button"
               aria-label="Delete card"
             ></button>
+
             <img src="#" alt="" class="card__image" />
+
             <div class="card__content">
               <h2 class="card__title"></h2>
               <div class="card__buttons">
@@ -64,41 +68,36 @@
           class="modal__close-btn"
           aria-label="Close edit profile modal"
         ></button>
+
         <h2 class="modal__title">Edit profile</h2>
+
         <form class="modal__form" id="profile-form" novalidate>
-          <label for="profile-name-input" class="modal__label">
+          <label class="modal__label">
             Name
             <input
               id="profile-name-input"
               type="text"
               class="modal__input"
-              placeholder="Type your name"
               minlength="2"
               maxlength="40"
               required
             />
-            <span
-              id="profile-name-input-error"
-              class="modal__error"
-              aria-live="polite"
-            ></span>
+            <span class="modal__error" id="profile-name-input-error"></span>
           </label>
 
-          <label for="profile-description-input" class="modal__label">
+          <label class="modal__label">
             Description
             <input
               id="profile-description-input"
               type="text"
               class="modal__input"
-              placeholder="Describe yourself"
               minlength="2"
               maxlength="200"
               required
             />
             <span
-              id="profile-description-input-error"
               class="modal__error"
-              aria-live="polite"
+              id="profile-description-input-error"
             ></span>
           </label>
 
@@ -116,40 +115,32 @@
           class="modal__close-btn"
           aria-label="Close new post modal"
         ></button>
+
         <h2 class="modal__title">New post</h2>
+
         <form class="modal__form" id="new-post-form" novalidate>
-          <label for="card-image-input" class="modal__label">
+          <label class="modal__label">
             Image link
             <input
               id="card-image-input"
               type="url"
               class="modal__input"
-              placeholder="Place a link to the picture"
               required
             />
-            <span
-              id="card-image-input-error"
-              class="modal__error"
-              aria-live="polite"
-            ></span>
+            <span class="modal__error" id="card-image-input-error"></span>
           </label>
 
-          <label for="card-caption-input" class="modal__label">
+          <label class="modal__label">
             Caption
             <input
               id="card-caption-input"
               type="text"
               class="modal__input"
-              placeholder="Type your caption"
               minlength="2"
               maxlength="30"
               required
             />
-            <span
-              id="card-caption-input-error"
-              class="modal__error"
-              aria-live="polite"
-            ></span>
+            <span class="modal__error" id="card-caption-input-error"></span>
           </label>
 
           <button type="submit" class="modal__submit-btn modal__button">
@@ -166,6 +157,7 @@
           class="modal__close-btn modal__close-btn_type_preview"
           aria-label="Close image preview"
         ></button>
+
         <img src="#" alt="" class="modal__image" />
         <p class="modal__caption"></p>
       </div>
