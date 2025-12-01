@@ -1,9 +1,13 @@
-import {
-  settings,
-  enableValidation,
-  resetValidation,
-} from "./scripts/validation.js";
-import Api from "./scripts/Api.js";
+import { settings, enableValidation, resetValidation } from "./validation.js";
+import Api from "./Api.js";
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "f9c36c82-4848-4bdf-9403-6c4b1fd1762a",
+    "Content-Type": "application/json",
+  },
+});
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -70,7 +74,6 @@ function getCardElement(data) {
   cardImage.alt = data.name;
 
   cardImage.addEventListener("click", () => openImagePreview(data));
-
   return cardElement;
 }
 
@@ -91,7 +94,6 @@ editProfileBtn.addEventListener("click", () => {
 profileForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const submitBtn = profileForm.querySelector(".modal__submit-btn");
-
   renderLoading(submitBtn, true, "Save");
 
   api
@@ -116,11 +118,13 @@ newPostBtn.addEventListener("click", () => {
 newPostForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const submitBtn = newPostForm.querySelector(".modal__submit-btn");
-
   renderLoading(submitBtn, true, "Create");
 
   api
-    .addCard({ name: newPostCaptionInput.value, link: newPostImageInput.value })
+    .addCard({
+      name: newPostCaptionInput.value,
+      link: newPostImageInput.value,
+    })
     .then((newCard) => {
       const cardEl = getCardElement(newCard);
       cardsContainer.prepend(cardEl);
