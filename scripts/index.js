@@ -1,3 +1,4 @@
+import "../pages/index.css";
 import "./index.css";
 
 import { enableValidation, resetValidation } from "../scripts/validation.js";
