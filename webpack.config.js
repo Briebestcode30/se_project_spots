@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   entry: "./scripts/index.js",
@@ -25,7 +27,13 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    minimizer: ["...", new CssMinimizerPlugin()],
+  },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: "styles.[contenthash].css",
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),

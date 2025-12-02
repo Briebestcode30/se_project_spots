@@ -1,33 +1,47 @@
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import "../pages/index.css";
+import "./index.css";
 
-import "./styles.css";
+import { enableValidation, resetValidation } from "../scripts/validation.js";
 
-import likeBtn from "../src/images/like_btn.svg";
-import likeActive from "../src/images/like_active.svg";
-import deleteIcon from "../src/images/delete_icon.svg";
-import deleteHover from "../src/images/delete_hover.svg";
-import closeIcon from "../src/images/close_icon.svg";
-import closeIconLight from "../src/images/close__icon-light.svg";
-import logo from "../src/images/logo.png";
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-btn",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
 
-import { settings, enableValidation, resetValidation } from "./validation.js";
-import Api from "./Api.js";
-
-document.addEventListener("DOMContentLoaded", () => {
-  const headerLogo = document.getElementById("header-logo");
-  const profileAvatar = document.getElementById("profile-avatar");
-
-  if (headerLogo) headerLogo.src = logo;
-  if (profileAvatar) profileAvatar.src = logo;
-
-  const api = new Api({
-    baseUrl: "https://around-api.en.tripleten-services.com/v1",
-    headers: {
-      authorization: "f9c36c82-4848-4bdf-9403-6c4b1fd1762a",
-      "Content-Type": "application/json",
-    },
-  });
+const initialCards = [
+  {
+    name: "Golden Gate Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
+  {
+    name: "Val Thorens",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+  },
+  {
+    name: "Restaurant terrace",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+  },
+  {
+    name: "An outdoor cafe",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+  },
+  {
+    name: "Tunnel with morning light",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+  },
+  {
+    name: "Mountain house",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+  },
+  {
+    name: "Landscape reflection lake",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
+];
 
   const editProfileBtn = document.querySelector(".profile__edit-btn");
   const editProfileModal = document.querySelector("#edit-profile-modal");
