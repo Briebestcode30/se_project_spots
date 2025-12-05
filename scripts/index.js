@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./index.css";
 import { settings, enableValidation, resetValidation } from "./validation.js";
 import Api from "./Api.js";
 

@@ -9,7 +9,7 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, "se_spots_sprint4"),
+    path: path.resolve(__dirname, "dist"),
     filename: "main.[contenthash].js",
     assetModuleFilename: "assets/[hash][ext][query]",
     publicPath: "",
@@ -21,7 +21,7 @@ module.exports = {
   stats: "errors-only",
 
   devServer: {
-    static: path.resolve(__dirname, "se_spots_sprint4"),
+    static: path.resolve(__dirname, "dist"),
     compress: true,
     port: 8080,
     open: true,
@@ -56,7 +56,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: "./index.html",
     }),
     new MiniCssExtractPlugin({
       filename: "styles.[contenthash].css",
