@@ -1,18 +1,23 @@
 import "./styles.css";
 
-// Images (relative path from scripts/index.js)
-import likeBtn from "../src/images/like_btn.svg";
-import likeActive from "../src/images/like_active.svg";
-import deleteIcon from "../src/images/delete_icon.svg";
-import deleteHover from "../src/images/delete_hover.svg";
-import closeIcon from "../src/images/close_icon.svg";
-import closeIconLight from "../src/images/close__icon-light.svg";
-import logo from "../src/images/logo.png";
+import likeBtn from "images/like_btn.svg";
+import likeActive from "images/like_active.svg";
+import deleteIcon from "images/delete_icon.svg";
+import deleteHover from "images/delete_hover.svg";
+import closeIcon from "images/close_icon.svg";
+import closeIconLight from "images/close__icon-light.svg";
+import logo from "images/logo.png";
 
 import { settings, enableValidation, resetValidation } from "./validation.js";
 import Api from "./Api.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  const headerLogo = document.getElementById("header-logo");
+  const profileAvatar = document.getElementById("profile-avatar");
+
+  if (headerLogo) headerLogo.src = logo;
+  if (profileAvatar) profileAvatar.src = logo;
+
   const api = new Api({
     baseUrl: "https://around-api.en.tripleten-services.com/v1",
     headers: {
@@ -21,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  // DOM elements
   const editProfileBtn = document.querySelector(".profile__edit-btn");
   const editProfileModal = document.querySelector("#edit-profile-modal");
   const profileForm = document.querySelector("#profile-form");
@@ -29,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileDescInput = document.querySelector("#profile-description-input");
   const profileNameEl = document.querySelector(".profile__name");
   const profileDescEl = document.querySelector(".profile__description");
-  const profileAvatarEl = document.querySelector(".profile__avatar");
 
   const newPostBtn = document.querySelector(".profile__add-btn");
   const newPostModal = document.querySelector("#new-post-modal");
@@ -44,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardsContainer = document.querySelector(".cards__list");
   const cardTemplate = document.querySelector("#card-template");
 
-  // Modal open/close
   function openModal(modal) {
     modal?.classList.add("modal_opened");
     document.addEventListener("keydown", handleEscClose);
@@ -72,12 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => closeModal(btn.closest(".modal")));
   });
 
-  // Loading button state
   function renderLoading(button, isLoading, defaultText) {
     if (button) button.textContent = isLoading ? "Saving..." : defaultText;
   }
 
-  // Card creation
   function getCardElement(data) {
     if (!cardTemplate) return null;
     const cardElement = cardTemplate.content
@@ -106,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
     openModal(previewModal);
   }
 
-  // Edit profile
   editProfileBtn?.addEventListener("click", () => {
     if (
       profileNameInput &&
@@ -140,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .finally(() => renderLoading(submitBtn, false, "Save"));
   });
 
-  // New post
   newPostBtn?.addEventListener("click", () => {
     resetValidation(newPostForm, settings);
     openModal(newPostModal);
@@ -166,12 +164,11 @@ document.addEventListener("DOMContentLoaded", () => {
       .finally(() => renderLoading(submitBtn, false, "Create"));
   });
 
-  // Initial user info and cards
   Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([userData, cards]) => {
       if (profileNameEl) profileNameEl.textContent = userData.name;
       if (profileDescEl) profileDescEl.textContent = userData.about;
-      if (profileAvatarEl) profileAvatarEl.src = userData.avatar;
+      if (profileAvatar) profileAvatar.src = userData.avatar;
 
       cards.reverse().forEach((card) => {
         const cardEl = getCardElement(card);
