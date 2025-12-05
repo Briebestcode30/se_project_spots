@@ -4,9 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: {
-    main: "./scripts/index.js",
-  },
+  entry: "./scripts/index.js",
 
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -29,21 +27,19 @@ module.exports = {
     liveReload: true,
   },
 
-  target: ["web", "es5"],
-
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        use: "babel-loader",
       },
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg|webp)$/i,
+        test: /\.(png|jpe?g|gif|svg|webp)$/i,
         type: "asset/resource",
       },
       {
@@ -62,4 +58,8 @@ module.exports = {
       filename: "styles.[contenthash].css",
     }),
   ],
+
+  resolve: {
+    extensions: [".js"],
+  },
 };
