@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Persona</title>
+    <meta name="author" content="Brieana Harris" />
+  </head>
+  <body class="page">
+    <header class="header">
+      <img
+        src="<%= require('./images/Logo.png') %>"
+        alt="Spot logo"
+        class="header__logo"
+      />
+    </header>
+
+    <main class="content">
+      <section class="profile page__section">
+        <img
+          src="<%= require('./images/Logo.png') %>"
+          alt="Profile photo"
+          class="profile__avatar"
+        />
+        <div class="profile__column">
+          <h1 class="profile__name">Bessie Coleman</h1>
+          <p class="profile__description">Civil Aviator</p>
+          <button type="button" class="profile__edit-btn">Edit profile</button>
+        </div>
+        <button type="button" class="profile__add-btn">New post</button>
+      </section>
+
+      <section class="cards page__section">
+        <ul class="cards__list"></ul>
+
+        <template id="card-template">
+          <li class="card">
+            <button
+              class="card__delete-button"
+              type="button"
+              aria-label="Delete card"
+            ></button>
+            <img src="#" alt="" class="card__image" />
+            <div class="card__content">
+              <h2 class="card__title"></h2>
+              <div class="card__buttons">
+                <button
+                  type="button"
+                  class="card__like-btn"
+                  aria-label="Like card"
+                ></button>
+              </div>
+            </div>
+          </li>
+        </template>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">© 2025 Brieana Harris</p>
+    </footer>
+  </body>
+</html>
