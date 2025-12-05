@@ -4,14 +4,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: "./scripts/index.js",
-
+  entry: "./scripts/index.js", // your main JS file
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.[contenthash].js",
-    assetModuleFilename: "assets/[hash][ext][query]",
+    assetModuleFilename: "images/[name].[hash][ext][query]", // images go to dist/images
     publicPath: "",
-    clean: true,
+    clean: true, // clean dist before each build
   },
 
   mode: "development",
@@ -35,16 +34,22 @@ module.exports = {
         use: "babel-loader",
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
       {
-        test: /\.(png|jpe?g|gif|svg|webp)$/i,
-        type: "asset/resource",
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: "asset/resource", // handle images correctly
+        generator: {
+          filename: "images/[name].[hash][ext]", // output folder for images
+        },
       },
       {
         test: /\.(woff|woff2|ttf|eot|otf)$/i,
-        type: "asset/resource",
+        type: "asset/resource", // fonts
+        generator: {
+          filename: "fonts/[name].[hash][ext]",
+        },
       },
     ],
   },
@@ -60,6 +65,6 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: [".js"],
+    extensions: [".js"], // resolve JS files automatically
   },
 };
