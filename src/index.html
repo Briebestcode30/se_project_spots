@@ -8,25 +8,26 @@
   </head>
   <body class="page">
     <header class="header">
-      <img
-        src="<%= require('./src/images/Logo.png') %>"
-        alt="Spot logo"
-        class="header__logo"
-      />
+      <img src="./images/logo.png" alt="Spot logo" class="header__logo" />
     </header>
 
     <main class="content">
       <section class="profile page__section">
-        <img
-          src="<%= require('./src/images/Logo.png') %>"
-          alt="Profile photo"
-          class="profile__avatar"
-        />
-        <div class="profile__column">
-          <h1 class="profile__name">Bessie Coleman</h1>
-          <p class="profile__description">Civil Aviator</p>
-          <button type="button" class="profile__edit-btn">Edit profile</button>
-        </div>
+        <form id="profile-form" class="profile__form">
+          <img
+            src="./images/logo.png"
+            alt="Profile photo"
+            class="profile__avatar"
+          />
+          <div class="profile__column">
+            <h1 class="profile__name">Bessie Coleman</h1>
+            <p class="profile__description">Civil Aviator</p>
+            <button type="button" class="profile__edit-btn">
+              Edit profile
+            </button>
+          </div>
+          <button type="submit" class="modal__submit-btn">Save</button>
+        </form>
         <button type="button" class="profile__add-btn">New post</button>
       </section>
 
@@ -54,10 +55,59 @@
           </li>
         </template>
       </section>
+
+      <section id="new-post-modal" class="modal">
+        <form id="new-post-form" class="modal__form">
+          <h2>New Post</h2>
+          <input
+            id="card-caption-input"
+            type="text"
+            placeholder="Caption"
+            required
+          />
+          <input
+            id="card-image-input"
+            type="url"
+            placeholder="Image URL"
+            required
+          />
+          <button type="submit" class="modal__submit-btn">Create</button>
+          <button type="button" class="modal__close-btn">Close</button>
+        </form>
+      </section>
+
+      <section id="preview-image-modal" class="modal">
+        <div class="modal__content">
+          <img src="#" alt="" class="modal__image" />
+          <p class="modal__caption"></p>
+          <button type="button" class="modal__close-btn">Close</button>
+        </div>
+      </section>
+
+      <section id="edit-profile-modal" class="modal">
+        <form id="edit-profile-form" class="modal__form">
+          <h2>Edit Profile</h2>
+          <input
+            id="profile-name-input"
+            type="text"
+            placeholder="Name"
+            required
+          />
+          <input
+            id="profile-description-input"
+            type="text"
+            placeholder="Description"
+            required
+          />
+          <button type="submit" class="modal__submit-btn">Save</button>
+          <button type="button" class="modal__close-btn">Close</button>
+        </form>
+      </section>
     </main>
 
     <footer class="footer">
       <p class="footer__copyright">© 2025 Brieana Harris</p>
     </footer>
+    <script src="./main.js"></script>
   </body>
 </html>
