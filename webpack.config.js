@@ -1,34 +1,43 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
-  entry: "./src/pages/index.js",
+  entry: {
+    main: "./scripts/index.js",
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.[contenthash].js",
-    clean: true,
-    assetModuleFilename: "assets/[hash][ext][query]",
+    filename: "main.js",
+    publicPath: "",
+    assetModuleFilename: "images/[name][ext][query]",
   },
-  devtool: "source-map",
+  mode: "development",
+  devtool: "inline-source-map",
+  stats: "errors-only",
   devServer: {
-    static: "./dist",
+    static: path.resolve(__dirname, "./dist"),
+    compress: true,
+    port: 8080,
     open: true,
-    hot: true,
-    port: 3000,
+    liveReload: true,
+    hot: false,
+  },
+  target: ["web", "es5"],
+  resolve: {
+    alias: {
+      images: path.resolve(__dirname, "src/images"),
+    },
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.js$/,
+        loader: "babel-loader",
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
       {
@@ -50,10 +59,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
-      favicon: "./src/images/favicon.ico",
     }),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
   ],
-  resolve: {
-    extensions: [".js"],
-  },
 };

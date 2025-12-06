@@ -2,7 +2,7 @@ const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-btn",
-  inactiveButtonClass: "modal__button_disabled",
+  inactiveButtonClass: "modal__submit-btn_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
@@ -78,18 +78,11 @@ function resetValidation(formElement, config) {
   );
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
-  inputList.forEach((inputElement) =>
-    hideInputError(formElement, inputElement, config)
-  );
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement, config);
+  });
+
   toggleButtonState(inputList, buttonElement, config);
 }
 
-export {
-  settings,
-  enableValidation,
-  resetValidation,
-  showInputError,
-  hideInputError,
-  checkInputValidity,
-  toggleButtonState,
-};
+export { settings, enableValidation, resetValidation };
