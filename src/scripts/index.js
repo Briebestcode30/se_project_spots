@@ -3,13 +3,13 @@ import "regenerator-runtime/runtime";
 
 import "./styles.css";
 
-import likeBtn from "../src/images/like_btn.svg";
-import likeActive from "../src/images/like_active.svg";
-import deleteIcon from "../src/images/delete_icon.svg";
-import deleteHover from "../src/images/delete_hover.svg";
-import closeIcon from "../src/images/close_icon.svg";
-import closeIconLight from "../src/images/close__icon-light.svg";
-import logo from "../src/images/logo.png";
+import likeBtn from "../images/like_btn.svg";
+import likeActive from "../images/like_active.svg";
+import deleteIcon from "../images/delete_icon.svg";
+import deleteHover from "../images/delete_hover.svg";
+import closeIcon from "../images/close_icon.svg";
+import closeIconLight from "../images/close__icon-light.svg";
+import logo from "../images/logo.png";
 
 import { settings, enableValidation, resetValidation } from "./validation.js";
 import Api from "./Api.js";
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const editProfileBtn = document.querySelector(".profile__edit-btn");
   const editProfileModal = document.querySelector("#edit-profile-modal");
-  const profileForm = document.querySelector("#profile-form");
+  const profileForm = document.querySelector("#edit-profile-form");
   const profileNameInput = document.querySelector("#profile-name-input");
   const profileDescInput = document.querySelector("#profile-description-input");
   const profileNameEl = document.querySelector(".profile__name");
