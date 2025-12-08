@@ -3,6 +3,7 @@ import "./index.css";
 
 import { enableValidation, resetValidation } from "../scripts/validation.js";
 
+<<<<<<< HEAD:scripts/index.js
 const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -11,6 +12,15 @@ const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+=======
+import likeBtn from "../images/like_btn.svg";
+import likeActive from "../images/like_active.svg";
+import deleteIcon from "../images/delete_icon.svg";
+import deleteHover from "../images/delete_hover.svg";
+import closeIcon from "../images/close_icon.svg";
+import closeIconLight from "../images/close__icon-light.svg";
+import logo from "../images/logo.png";
+>>>>>>> 6759f45 (project changes):src/scripts/index.js
 
 const initialCards = [
   {
@@ -45,7 +55,7 @@ const initialCards = [
 
   const editProfileBtn = document.querySelector(".profile__edit-btn");
   const editProfileModal = document.querySelector("#edit-profile-modal");
-  const profileForm = document.querySelector("#profile-form");
+  const profileForm = document.querySelector("#edit-profile-form");
   const profileNameInput = document.querySelector("#profile-name-input");
   const profileDescInput = document.querySelector("#profile-description-input");
   const profileNameEl = document.querySelector(".profile__name");

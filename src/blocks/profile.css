@@ -48,7 +48,7 @@
 .profile__edit-btn {
   margin-top: auto;
   border: none;
-  background: url(../src/images/edit.png) left center no-repeat transparent;
+  background: url(../images/edit.png) left center no-repeat transparent;
   font-size: 16px;
   line-height: 100%;
   font-weight: 500;
@@ -65,7 +65,7 @@
 }
 
 .profile__add-btn {
-  background: url(../src/images/add.svg) 16px center no-repeat black;
+  background: url(../images/add.svg) 16px center no-repeat black;
   margin-left: auto;
   border: none;
   color: #fcf5e5;

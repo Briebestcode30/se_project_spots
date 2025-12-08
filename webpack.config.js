@@ -1,49 +1,62 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
-  entry: "./scripts/index.js",
-  output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "dist"),
-    clean: true,
+  entry: {
+    main: "./src/scripts/index.js",
   },
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+    publicPath: "",
+  },
+
+  mode: "development",
+  devtool: "inline-source-map",
+  stats: "errors-only",
+  devServer: {
+    static: path.resolve(__dirname, "./dist"),
+    compress: true,
+    port: 8080,
+    open: true,
+    liveReload: true,
+    hot: false,
+  },
+  target: ["web", "es5"],
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"],
+        loader: "babel-loader",
+        exclude: "/node_modules/",
       },
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+            },
+          },
+          "postcss-loader",
+        ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
-        type: "asset/resource",
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        test: /\.(png|svg|jpg|jpeg|webp|gif|woff(2)?|eot|ttf|otf)$/,
         type: "asset/resource",
       },
     ],
   },
-  optimization: {
-    minimizer: ["...", new CssMinimizerPlugin()],
-  },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "styles.[contenthash].css",
-    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
   ],
-  devServer: {
-    static: "./dist",
-    hot: true,
-  },
 };

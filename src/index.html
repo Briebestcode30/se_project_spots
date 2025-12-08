@@ -13,21 +13,13 @@
 
     <main class="content">
       <section class="profile page__section">
-        <form id="profile-form" class="profile__form">
-          <img
-            id="profile-avatar"
-            alt="Profile photo"
-            class="profile__avatar"
-          />
-          <div class="profile__column">
-            <h1 class="profile__name">Bessie Coleman</h1>
-            <p class="profile__description">Civil Aviator</p>
-            <button type="button" class="profile__edit-btn">
-              Edit profile
-            </button>
-          </div>
-          <button type="submit" class="modal__submit-btn">Save</button>
-        </form>
+        <img id="profile-avatar" alt="Profile photo" class="profile__avatar" />
+        <div class="profile__column">
+          <h1 class="profile__name">Bessie Coleman</h1>
+          <p class="profile__description">Civil Aviator</p>
+          <button type="button" class="profile__edit-btn">Edit profile</button>
+        </div>
+
         <button type="button" class="profile__add-btn">New post</button>
       </section>
 
@@ -57,23 +49,25 @@
       </section>
 
       <section id="new-post-modal" class="modal">
-        <form id="new-post-form" class="modal__form">
-          <h2>New Post</h2>
-          <input
-            id="card-caption-input"
-            type="text"
-            placeholder="Caption"
-            required
-          />
-          <input
-            id="card-image-input"
-            type="url"
-            placeholder="Image URL"
-            required
-          />
-          <button type="submit" class="modal__submit-btn">Create</button>
-          <button type="button" class="modal__close-btn">Close</button>
-        </form>
+        <div class="modal__container">
+          <form id="new-post-form" class="modal__form">
+            <h2>New Post</h2>
+            <input
+              id="card-caption-input"
+              type="text"
+              placeholder="Caption"
+              required
+            />
+            <input
+              id="card-image-input"
+              type="url"
+              placeholder="Image URL"
+              required
+            />
+            <button type="submit" class="modal__submit-btn">Create</button>
+            <button type="button" class="modal__close-btn">Close</button>
+          </form>
+        </div>
       </section>
 
       <section id="preview-image-modal" class="modal">
@@ -108,7 +102,5 @@
     <footer class="footer">
       <p class="footer__copyright">© 2025 Brieana Harris</p>
     </footer>
-
-    <script src="./main.js"></script>
   </body>
 </html>
