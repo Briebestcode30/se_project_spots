@@ -1,28 +1,32 @@
 {
-  "name": "spots",
-  "version": "1.0.0",
-  "description": "Spots project with Webpack, Babel, PostCSS, and full asset processing",
+  "name": "Insert project name",
+  "version": "0.1.0",
+  "description": "Describe the project",
+  "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "dev": "webpack serve --mode development"
   },
-  "dependencies": {},
+  "author": "TripleTen",
+  "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.25.0",
-    "@babel/preset-env": "^7.25.0",
-    "autoprefixer": "^10.4.20",
-    "babel-loader": "^9.1.3",
-    "clean-webpack-plugin": "^4.0.0",
-    "css-loader": "^6.10.0",
-    "html-webpack-plugin": "^5.6.0",
-    "mini-css-extract-plugin": "^2.9.0",
-    "postcss": "^8.4.38",
-    "postcss-loader": "^7.3.4",
-    "postcss-preset-env": "^9.5.0",
-    "style-loader": "^3.3.4",
-    "webpack": "^5.92.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.2",
-    "webpack-merge": "^5.10.0"
+    "@babel/core": "7.18.9",
+    "@babel/preset-env": "7.18.9",
+    "autoprefixer": "10.4.7",
+    "babel-loader": "8.2.5",
+    "clean-webpack-plugin": "4.0.0",
+    "css-loader": "^6.7.1",
+    "cssnano": "5.1.12",
+    "html-webpack-plugin": "5.5.0",
+    "mini-css-extract-plugin": "2.6.1",
+    "postcss-loader": "^7.0.1",
+    "style-loader": "^4.0.0",
+    "webpack": "5.76.0",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "4.9.3"
+  },
+  "dependencies": {
+    "core-js": "^3.23.5",
+    "regenerator-runtime": "^0.14.1"
   }
 }

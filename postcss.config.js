@@ -1,14 +1,6 @@
+const autoprefixer = require("autoprefixer");
+const cssnano = require("cssnano");
+
 module.exports = {
-  plugins: [
-    require("postcss-preset-env")({
-      stage: 1,
-      features: {
-        "nesting-rules": true,
-      },
-    }),
-    require("autoprefixer"),
-    require("cssnano")({
-      preset: "default",
-    }),
-  ],
+  plugins: [autoprefixer, cssnano({ preset: "default" })],
 };
