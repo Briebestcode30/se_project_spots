@@ -1,48 +1,26 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: {
-    main: "./scripts/index.js",
-  },
+  entry: "./scripts/index.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
     filename: "main.js",
-    publicPath: "",
-    assetModuleFilename: "images/[name][ext][query]",
-  },
-  mode: "development",
-  devtool: "inline-source-map",
-  stats: "errors-only",
-  devServer: {
-    static: path.resolve(__dirname, "./dist"),
-    compress: true,
-    port: 8080,
-    open: true,
-    liveReload: true,
-    hot: false,
-  },
-  target: ["web", "es5"],
-  resolve: {
-    alias: {
-      images: path.resolve(__dirname, "src/images"),
-    },
+    path: path.resolve(__dirname, "dist"),
+    clean: true,
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        loader: "babel-loader",
         exclude: /node_modules/,
+        use: ["babel-loader"],
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|webp|gif|woff(2)?|eot|ttf|otf)$/,
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
       },
     ],
@@ -51,7 +29,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin(),
   ],
+  devServer: {
+    static: "./dist",
+    hot: true,
+  },
 };
