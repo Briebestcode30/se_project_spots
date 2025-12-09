@@ -70,9 +70,21 @@ const initialCards = [
   const previewModal = document.querySelector("#preview-image-modal");
   const previewImage = previewModal?.querySelector(".modal__image");
   const previewCaption = previewModal?.querySelector(".modal__caption");
+  const previewCloseBtn = previewModal?.querySelector(
+    ".modal__close-btn_type_preview"
+  );
+
+  const deleteModal = document.querySelector("#delete-card-modal");
+  const confirmDeleteBtn = document.querySelector("#confirm-delete-btn");
+
+  const avatarModal = document.querySelector("#avatar-modal");
+  const avatarForm = document.querySelector("#avatar-form");
+  const avatarInput = document.querySelector("#avatar-url-input");
 
   const cardsContainer = document.querySelector(".cards__list");
   const cardTemplate = document.querySelector("#card-template");
+
+  let cardToDelete = null;
 
   function openModal(modal) {
     modal?.classList.add("modal_opened");
@@ -105,7 +117,7 @@ const initialCards = [
     if (button) button.textContent = isLoading ? "Saving..." : defaultText;
   }
 
-  function getCardElement(data) {
+  function createCardElement(data) {
     if (!cardTemplate) return null;
     const cardElement = cardTemplate.content
       .querySelector(".card")
@@ -113,18 +125,42 @@ const initialCards = [
 
     const cardTitle = cardElement.querySelector(".card__title");
     const cardImage = cardElement.querySelector(".card__image");
+    const likeBtnEl = cardElement.querySelector(".card__like-btn");
+    const deleteBtn = cardElement.querySelector(".card__delete-button");
 
     if (cardTitle) cardTitle.textContent = data.name;
     if (cardImage) {
       cardImage.src = data.link;
       cardImage.alt = data.name;
-      cardImage.addEventListener("click", () => openImagePreview(data));
+      cardImage.addEventListener("click", () => openPreviewModal(data));
+    }
+
+    if (likeBtnEl) {
+      likeBtnEl.addEventListener("click", () => {
+        const isLiked = likeBtnEl.classList.contains("card__like-btn_active");
+        const apiCall = isLiked
+          ? api.removeLike(data._id)
+          : api.addLike(data._id);
+        apiCall
+          .then((updatedCard) => {
+            if (!likeBtnEl) return;
+            likeBtnEl.classList.toggle("card__like-btn_active", !isLiked);
+          })
+          .catch(console.error);
+      });
+    }
+
+    if (deleteBtn) {
+      deleteBtn.addEventListener("click", () => {
+        cardToDelete = { id: data._id, element: cardElement };
+        openModal(deleteModal);
+      });
     }
 
     return cardElement;
   }
 
-  function openImagePreview(data) {
+  function openPreviewModal(data) {
     if (previewImage) {
       previewImage.src = data.link;
       previewImage.alt = data.name;
@@ -182,13 +218,48 @@ const initialCards = [
         link: newPostImageInput.value,
       })
       .then((newCard) => {
-        const cardEl = getCardElement(newCard);
+        const cardEl = createCardElement(newCard);
         if (cardEl) cardsContainer.prepend(cardEl);
         newPostForm.reset();
         closeModal(newPostModal);
       })
       .catch(console.error)
       .finally(() => renderLoading(submitBtn, false, "Create"));
+  });
+
+  confirmDeleteBtn?.addEventListener("click", () => {
+    if (!cardToDelete) return;
+    renderLoading(confirmDeleteBtn, true, "Deleting...");
+    api
+      .deleteCard(cardToDelete.id)
+      .then(() => {
+        cardToDelete.element.remove();
+        cardToDelete = null;
+        closeModal(deleteModal);
+      })
+      .catch(console.error)
+      .finally(() => renderLoading(confirmDeleteBtn, false, "Delete"));
+  });
+
+  profileAvatar?.addEventListener("click", () => {
+    resetValidation(avatarForm, settings);
+    openModal(avatarModal);
+  });
+
+  avatarForm?.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+    const submitBtn = avatarForm.querySelector(".modal__submit-btn");
+    renderLoading(submitBtn, true, "Save");
+
+    api
+      .updateAvatar(avatarInput.value)
+      .then((res) => {
+        if (profileAvatar) profileAvatar.src = res.avatar;
+        avatarForm.reset();
+        closeModal(avatarModal);
+      })
+      .catch(console.error)
+      .finally(() => renderLoading(submitBtn, false, "Save"));
   });
 
   Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -198,7 +269,7 @@ const initialCards = [
       if (profileAvatar) profileAvatar.src = userData.avatar;
 
       cards.reverse().forEach((card) => {
-        const cardEl = getCardElement(card);
+        const cardEl = createCardElement(card);
         if (cardEl) cardsContainer.prepend(cardEl);
       });
     })
