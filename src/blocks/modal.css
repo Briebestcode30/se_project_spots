@@ -91,7 +91,7 @@
 
 .modal__submit-btn {
   background-color: #212121;
-  color: #fcf5e5;
+  color: white;
   border: none;
   border-radius: 8px;
   padding: 16px 0;
@@ -100,6 +100,7 @@
   cursor: pointer;
   transition: opacity 0.3s ease;
   width: 156px;
+  margin-top: 24px;
 }
 
 .modal__submit-btn:hover {
