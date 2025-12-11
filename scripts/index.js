@@ -1,11 +1,16 @@
 import Api from "../utils/Api.js";
+import "../pages/index.css";
+
+import avatarImg from "../images/avatar.jpg";
+import logoImg from "../images/Logo.png";
 
 const api = new Api({
   baseUrl: "https://example.com",
-  headers: {
-    "Content-Type": "application/json",
-  },
+  headers: { "Content-Type": "application/json" },
 });
+
+document.querySelector(".profile__avatar").src = avatarImg;
+document.querySelector(".header__logo").src = logoImg;
 
 const initialCards = [
   {
@@ -90,9 +95,7 @@ document.querySelectorAll(".modal").forEach((modal) => {
 });
 
 document.querySelectorAll(".modal__close-btn").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    closeModal(btn.closest(".modal"));
-  });
+  btn.addEventListener("click", () => closeModal(btn.closest(".modal")));
 });
 
 editProfileBtn.addEventListener("click", () => {
@@ -109,22 +112,17 @@ profileForm.addEventListener("submit", (evt) => {
   closeModal(editProfileModal);
 });
 
-newPostBtn.addEventListener("click", () => {
-  openModal(newPostModal);
-});
+newPostBtn.addEventListener("click", () => openModal(newPostModal));
 
 newPostForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
-
   const newCardData = {
     name: newPostCaptionInput.value,
     link: newPostImageInput.value,
     isLiked: false,
   };
-
   const newCard = getCardElement(newCardData);
   cardsContainer.prepend(newCard);
-
   newPostForm.reset();
   resetValidation(newPostForm, settings);
   closeModal(newPostModal);
@@ -134,7 +132,6 @@ function getCardElement(data) {
   const cardElement = cardTemplate.content
     .querySelector(".card")
     .cloneNode(true);
-
   const cardTitle = cardElement.querySelector(".card__title");
   const cardImage = cardElement.querySelector(".card__image");
   const likeButton = cardElement.querySelector(".card__like-btn");
@@ -144,29 +141,19 @@ function getCardElement(data) {
   cardImage.src = data.link;
   cardImage.alt = data.name;
 
-  if (likeButton && data.isLiked) {
+  if (likeButton && data.isLiked)
     likeButton.classList.add("card__like-btn_active");
-  }
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-btn_active");
-  });
-
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  cardImage.addEventListener("click", () => {
-    openImagePreview(data);
-  });
+  likeButton.addEventListener("click", () =>
+    likeButton.classList.toggle("card__like-btn_active")
+  );
+  deleteButton.addEventListener("click", () => cardElement.remove());
+  cardImage.addEventListener("click", () => openImagePreview(data));
 
   return cardElement;
 }
 
-initialCards.forEach((item) => {
-  const cardElement = getCardElement(item);
-  cardsContainer.prepend(cardElement);
-});
+initialCards.forEach((item) => cardsContainer.prepend(getCardElement(item)));
 
 function openImagePreview(data) {
   previewImage.src = data.link;
@@ -184,81 +171,66 @@ const settings = {
   errorClass: "modal__error_visible",
 };
 
-function showInputError(formElement, inputElement, errorMessage, config) {
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.add(config.inputErrorClass);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(config.errorClass);
+function showInputError(form, input, msg, config) {
+  const errorEl = form.querySelector(`#${input.id}-error`);
+  input.classList.add(config.inputErrorClass);
+  errorEl.textContent = msg;
+  errorEl.classList.add(config.errorClass);
 }
 
-function hideInputError(formElement, inputElement, config) {
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.remove(config.inputErrorClass);
-  errorElement.classList.remove(config.errorClass);
-  errorElement.textContent = "";
+function hideInputError(form, input, config) {
+  const errorEl = form.querySelector(`#${input.id}-error`);
+  input.classList.remove(config.inputErrorClass);
+  errorEl.classList.remove(config.errorClass);
+  errorEl.textContent = "";
 }
 
-function checkInputValidity(formElement, inputElement, config) {
-  if (!inputElement.validity.valid) {
-    showInputError(
-      formElement,
-      inputElement,
-      inputElement.validationMessage,
-      config
-    );
-  } else {
-    hideInputError(formElement, inputElement, config);
-  }
+function checkInputValidity(form, input, config) {
+  if (!input.validity.valid)
+    showInputError(form, input, input.validationMessage, config);
+  else hideInputError(form, input, config);
 }
 
 function hasInvalidInput(inputList) {
-  return inputList.some((inputElement) => !inputElement.validity.valid);
+  return inputList.some((input) => !input.validity.valid);
 }
 
-function toggleButtonState(inputList, buttonElement, config) {
+function toggleButtonState(inputList, button, config) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(config.inactiveButtonClass);
-    buttonElement.disabled = true;
+    button.classList.add(config.inactiveButtonClass);
+    button.disabled = true;
   } else {
-    buttonElement.classList.remove(config.inactiveButtonClass);
-    buttonElement.disabled = false;
+    button.classList.remove(config.inactiveButtonClass);
+    button.disabled = false;
   }
 }
 
-function setEventListeners(formElement, config) {
-  const inputList = Array.from(
-    formElement.querySelectorAll(config.inputSelector)
-  );
-  const buttonElement = formElement.querySelector(config.submitButtonSelector);
+function setEventListeners(form, config) {
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
+  const button = form.querySelector(config.submitButtonSelector);
 
-  toggleButtonState(inputList, buttonElement, config);
-
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener("input", () => {
-      checkInputValidity(formElement, inputElement, config);
-      toggleButtonState(inputList, buttonElement, config);
+  toggleButtonState(inputList, button, config);
+  inputList.forEach((input) => {
+    input.addEventListener("input", () => {
+      checkInputValidity(form, input, config);
+      toggleButtonState(inputList, button, config);
     });
   });
 }
 
 function enableValidation(config) {
-  const formList = Array.from(document.querySelectorAll(config.formSelector));
-  formList.forEach((formElement) => {
-    formElement.addEventListener("submit", (evt) => evt.preventDefault());
-    setEventListeners(formElement, config);
+  Array.from(document.querySelectorAll(config.formSelector)).forEach((form) => {
+    form.addEventListener("submit", (evt) => evt.preventDefault());
+    setEventListeners(form, config);
   });
 }
 
-function resetValidation(formElement, config) {
-  const inputList = Array.from(
-    formElement.querySelectorAll(config.inputSelector)
-  );
-  const buttonElement = formElement.querySelector(config.submitButtonSelector);
+function resetValidation(form, config) {
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
+  const button = form.querySelector(config.submitButtonSelector);
 
-  inputList.forEach((inputElement) =>
-    hideInputError(formElement, inputElement, config)
-  );
-  toggleButtonState(inputList, buttonElement, config);
+  inputList.forEach((input) => hideInputError(form, input, config));
+  toggleButtonState(inputList, button, config);
 }
 
 enableValidation(settings);
