@@ -25,6 +25,18 @@ module.exports = {
     open: true,
     liveReload: true,
     hot: false,
+
+    client: {
+      webSocketURL: {
+        protocol: "ws",
+        hostname: "localhost",
+        port: 8080,
+        pathname: "ws",
+      },
+    },
+
+    host: "0.0.0.0",
+    allowedHosts: "all",
   },
 
   target: ["web", "es5"],
