@@ -1,3 +1,12 @@
+import Api from "../utils/Api.js";
+
+const api = new Api({
+  baseUrl: "https://example.com",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
 const initialCards = [
   {
     name: "Golden Gate Bridge",
@@ -69,16 +78,13 @@ function handleEscClose(evt) {
 
 document.querySelectorAll(".modal").forEach((modal) => {
   modal.addEventListener("mousedown", (evt) => {
-    if (evt.target === modal) {
-      closeModal(modal);
-    }
+    if (evt.target === modal) closeModal(modal);
   });
 });
 
 document.querySelectorAll(".modal__close-btn").forEach((btn) => {
   btn.addEventListener("click", () => {
-    const modal = btn.closest(".modal");
-    closeModal(modal);
+    closeModal(btn.closest(".modal"));
   });
 });
 
@@ -91,8 +97,10 @@ editProfileBtn.addEventListener("click", () => {
 
 profileForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
+
   profileNameEl.textContent = profileNameInput.value;
   profileDescEl.textContent = profileDescInput.value;
+
   closeModal(editProfileModal);
 });
 
@@ -156,3 +164,12 @@ function openImagePreview(data) {
   previewCaption.textContent = data.name;
   openModal(previewModal);
 }
+
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-btn",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
