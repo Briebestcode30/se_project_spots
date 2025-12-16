@@ -5,58 +5,60 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
-  entry: {
-    main: "./src/scripts/index.js",
-  },
+  entry: "./src/pages/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
-    publicPath: "",
+    filename: "bundle.[contenthash].js",
+    clean: true,
+    assetModuleFilename: "assets/[hash][ext][query]",
   },
-
-  mode: "development",
-  devtool: "inline-source-map",
-  stats: "errors-only",
+  devtool: "source-map",
   devServer: {
-    static: path.resolve(__dirname, "./dist"),
-    compress: true,
-    port: 8080,
+    static: "./dist",
     open: true,
-    liveReload: true,
-    hot: false,
+    hot: true,
+    port: 3000,
   },
-  target: ["web", "es5"],
   module: {
     rules: [
       {
-        test: /\.js$/,
-        loader: "babel-loader",
-        exclude: "/node_modules/",
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
       },
+
       {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1,
-            },
-          },
-          "postcss-loader",
-        ],
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
+
       {
-        test: /\.(png|svg|jpg|jpeg|webp|gif|woff(2)?|eot|ttf|otf)$/,
+        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
+        type: "asset/resource",
+      },
+
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
       },
     ],
   },
+  optimization: {
+    minimizer: [`...`, new CssMinimizerPlugin()],
+  },
   plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "styles.[contenthash].css",
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      favicon: "./src/images/favicon.ico",
     }),
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin(),
   ],
+  resolve: {
+    extensions: [".js"],
+  },
 };
