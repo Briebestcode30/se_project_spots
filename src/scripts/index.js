@@ -1,22 +1,12 @@
-import "../pages/index.css";
 import "./index.css";
 
-import { enableValidation, resetValidation } from "../scripts/validation.js";
-import { validationSettings } from "../scripts/constants.js";
-import Api from "../scripts/api.js";
-
-import likeBtn from "../images/like_btn.svg";
-import likeActive from "../images/like_active.svg";
-import deleteIcon from "../images/delete_icon.svg";
-import deleteHover from "../images/delete_hover.svg";
-import closeIcon from "../images/close_icon.svg";
-import closeIconLight from "../images/close__icon-light.svg";
-import logo from "../images/logo.png";
+import { enableValidation, resetValidation } from "./validation.js";
+import { validationSettings } from "../utils/constants.js";
+import Api from "../utils/Api.js";
 
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/your-cohort-id",
   headers: {
-    authorization: "your-token",
+    authorization: "Bearer your-token",
     "Content-Type": "application/json",
   },
 });
@@ -119,6 +109,10 @@ function createCardElement(data) {
     cardToDelete = { id: data._id, element: cardElement };
     openModal(deleteModal);
   });
+
+  if (data.likes && data.likes.includes(api._user._id)) {
+    likeBtnEl.classList.add("card__like-btn_active");
+  }
 
   return cardElement;
 }

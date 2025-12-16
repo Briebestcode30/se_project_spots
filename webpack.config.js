@@ -2,63 +2,60 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
-  entry: "./src/pages/index.js",
+  entry: {
+    main: "./src/scripts/index.js",
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.[contenthash].js",
-    clean: true,
-    assetModuleFilename: "assets/[hash][ext][query]",
+    filename: "main.js",
+    publicPath: "",
   },
-  devtool: "source-map",
+
+  mode: "development",
+  devtool: "inline-source-map",
+  stats: "errors-only",
   devServer: {
-    static: "./dist",
+    static: path.resolve(__dirname, "./dist"),
+    compress: true,
+    port: 8080,
     open: true,
-    hot: true,
-    port: 3000,
+    liveReload: true,
+    hot: false,
   },
+  target: ["web", "es5"],
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
+        test: /\.js$/,
+        loader: "babel-loader",
+        exclude: "/node_modules/",
       },
-
       {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+            },
+          },
+          "postcss-loader",
+        ],
       },
-
       {
-        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
-        type: "asset/resource",
-      },
-
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        test: /\.(png|svg|jpg|jpeg|webp|gif|woff(2)?|eot|ttf|otf)$/,
         type: "asset/resource",
       },
     ],
   },
-  optimization: {
-    minimizer: [`...`, new CssMinimizerPlugin()],
-  },
   plugins: [
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "styles.[contenthash].css",
-    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
-      favicon: "./src/images/favicon.ico",
     }),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
   ],
-  resolve: {
-    extensions: [".js"],
-  },
 };
