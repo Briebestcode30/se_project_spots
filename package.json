@@ -1,5 +1,5 @@
 {
-  "name": "Persona",
+  "name": "persona",
   "version": "0.1.0",
   "description": "Describe the project",
   "main": "index.js",
@@ -26,5 +26,14 @@
   },
   "dependencies": {
     "core-js": "3.23.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Briebestcode30/se_project_spots.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Briebestcode30/se_project_spots/issues"
+  },
+  "homepage": "https://github.com/Briebestcode30/se_project_spots#readme"
 }

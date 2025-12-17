@@ -1,82 +1,69 @@
-export default class Api {
-  constructor({ headers }) {
+class Api {
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
     this._headers = headers;
-
-    this._user = {
-      _id: "user-123",
-      name: "Jane Doe",
-      about: "Web Developer",
-      avatar: "https://i.pravatar.cc/150?img=3",
-    };
-
-    this._cards = [
-      {
-        _id: "card-1",
-        name: "Beautiful Landscape",
-        link: "https://picsum.photos/id/1015/300/200",
-        likes: [],
-      },
-      {
-        _id: "card-2",
-        name: "City at Night",
-        link: "https://picsum.photos/id/1011/300/200",
-        likes: [],
-      },
-    ];
   }
 
-  _simulate(data) {
-    return new Promise((resolve) => setTimeout(() => resolve(data), 300));
+  _request(endpoint, options) {
+    return fetch(`${this._baseUrl}${endpoint}`, {
+      headers: this._headers,
+      ...options,
+    }).then((res) =>
+      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+    );
   }
 
+  // New method to get user info
   getUserInfo() {
-    return this._simulate(this._user);
+    return this._request("/users/me", {
+      method: "GET",
+    });
   }
 
   updateProfile({ name, about }) {
-    this._user.name = name;
-    this._user.about = about;
-    return this._simulate(this._user);
+    return this._request("/users/me", {
+      method: "PATCH",
+      body: JSON.stringify({ name, about }),
+    });
   }
 
-  updateAvatar(avatar) {
-    this._user.avatar = avatar;
-    return this._simulate(this._user);
+  updateAvatar({ avatar }) {
+    return this._request("/users/me/avatar", {
+      method: "PATCH",
+      body: JSON.stringify({ avatar }),
+    });
   }
 
   getInitialCards() {
-    return this._simulate(this._cards);
+    return this._request("/cards", {
+      method: "GET",
+    });
   }
 
   addCard({ name, link }) {
-    const card = {
-      _id: `card-${Date.now()}`,
-      name,
-      link,
-      likes: [],
-    };
-    this._cards.unshift(card);
-    return this._simulate(card);
+    return this._request("/cards", {
+      method: "POST",
+      body: JSON.stringify({ name, link }),
+    });
   }
 
   deleteCard(cardId) {
-    this._cards = this._cards.filter((c) => c._id !== cardId);
-    return this._simulate({});
+    return this._request(`/cards/${cardId}`, {
+      method: "DELETE",
+    });
   }
 
-  addLike(cardId) {
-    const card = this._cards.find((c) => c._id === cardId);
-    if (card && !card.likes.includes(this._user._id)) {
-      card.likes.push(this._user._id);
-    }
-    return this._simulate(card);
+  likeCard(cardId) {
+    return this._request(`/cards/likes/${cardId}`, {
+      method: "PUT",
+    });
   }
 
-  removeLike(cardId) {
-    const card = this._cards.find((c) => c._id === cardId);
-    if (card) {
-      card.likes = card.likes.filter((id) => id !== this._user._id);
-    }
-    return this._simulate(card);
+  unlikeCard(cardId) {
+    return this._request(`/cards/likes/${cardId}`, {
+      method: "DELETE",
+    });
   }
 }
+
+export default Api;

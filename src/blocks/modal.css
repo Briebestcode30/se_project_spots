@@ -113,7 +113,6 @@
 
 .modal__image {
   max-width: 90vw;
-  max-height: 80vh;
   width: 100%;
   object-fit: contain;
   display: block;
