@@ -88,6 +88,48 @@
   opacity: 0.8;
 }
 
+/* NEW: Avatar container and overlay styling */
+.profile__avatar-container {
+  position: relative;
+  display: inline-block;
+  width: 190px;
+  height: 190px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  margin-right: 20px; /* keep consistent with .profile__avatar */
+}
+
+.profile__avatar-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 8px;
+  pointer-events: none;
+  padding-top: 162px;
+  background: url(../images/Group\ 2.svg) left center no-repeat transparent;
+}
+
+.profile__avatar-icon {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+.profile__avatar-container:hover .profile__avatar-overlay {
+  opacity: 1;
+}
+
 @media screen and (max-width: 627px) {
   .profile {
     flex-direction: column;
@@ -102,6 +144,23 @@
     margin-right: 0;
     height: 80px;
     width: 80px;
+  }
+
+  .profile__avatar-container {
+    width: 80px;
+    height: 80px;
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+
+  .profile__avatar-overlay {
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .profile__avatar-icon {
+    width: 16px;
+    height: 16px;
   }
 
   .profile__name {

@@ -116,8 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
     likeBtnEl.addEventListener("click", () => {
       const isLiked = likeBtnEl.classList.contains("card__like-btn_active");
       const request = isLiked
-        ? api.removeLike(data._id)
-        : api.addLike(data._id);
+        ? api.unlikeCard(data._id)
+        : api.likeCard(data._id);
 
       request
         .then(() => likeBtnEl.classList.toggle("card__like-btn_active"))
