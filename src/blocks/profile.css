@@ -64,6 +64,15 @@
   opacity: 1;
 }
 
+.profile__avatar-text {
+  background: url(../images/group-2.svg) left center no-repeat transparent;
+  padding-left: 22px;
+  position: absolute;
+  bottom: 16px;
+  display: flex;
+  gap: 8px;
+}
+
 .profile__add-btn {
   background: url(../images/add.svg) 16px center no-repeat black;
   margin-left: auto;
@@ -85,10 +94,11 @@
 }
 
 .profile__add-btn:hover {
-  opacity: 0.8;
+  width: 190;
+  height: 190;
+  opacity: 1;
 }
 
-/* NEW: Avatar container and overlay styling */
 .profile__avatar-container {
   position: relative;
   display: inline-block;
@@ -97,7 +107,7 @@
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  margin-right: 20px; /* keep consistent with .profile__avatar */
+  margin-right: 20px;
 }
 
 .profile__avatar-overlay {
@@ -116,8 +126,7 @@
   transition: opacity 0.3s ease;
   border-radius: 8px;
   pointer-events: none;
-  padding-top: 162px;
-  background: url(../images/group-2.svg) left center no-repeat transparent;
+  margin-bottom: 12px;
 }
 
 .profile__avatar-icon {

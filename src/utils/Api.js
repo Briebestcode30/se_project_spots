@@ -13,7 +13,6 @@ class Api {
     );
   }
 
-  // New method to get user info
   getUserInfo() {
     return this._request("/users/me", {
       method: "GET",
