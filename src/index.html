@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Persona</title>
     <meta name="author" content="Brieana Harris" />
-    <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="page">
     <header class="header">
@@ -20,8 +19,7 @@
             class="profile__avatar"
           />
           <div class="profile__avatar-overlay">
-            <!-- Custom Edit Icon -->
-            <img src="./images/Group 2.svg" alt="" class="edit-icon-image" />
+            <img src="<%=require('./images/logo.png')%>" alt="Logo" />
             <span class="profile__avatar-text">Edit Avatar</span>
           </div>
         </div>
@@ -58,7 +56,6 @@
         </template>
       </section>
 
-      <!-- Modals -->
       <section id="new-post-modal" class="modal">
         <div class="modal__container">
           <form id="new-post-form" class="modal__form">

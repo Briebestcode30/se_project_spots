@@ -7,21 +7,17 @@ import { validationSettings } from "../utils/constants.js";
 import Api from "../utils/Api.js";
 
 const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1", // or localhost backend URL
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization:
-      "4948c3b5-5bde-4e7c-a9ca-627337b4c1e5" /*project description*/,
+    authorization: "4948c3b5-5bde-4e7c-a9ca-627337b4c1e5",
     "Content-Type": "application/json",
   },
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  /* ------------------ DOM ELEMENTS ------------------ */
-
   const headerLogo = document.querySelector("#header-logo");
   const profileAvatar = document.querySelector("#profile-avatar");
 
-  // Set default logo and avatar placeholders
   if (headerLogo) headerLogo.src = logo;
   if (profileAvatar) profileAvatar.src = avatar;
 
@@ -55,8 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let cardToDelete = null;
 
-  /* ------------------ MODAL HELPERS ------------------ */
-
   function openModal(modal) {
     modal.classList.add("modal_opened");
     document.addEventListener("keydown", handleEscClose);
@@ -87,8 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderLoading(button, isLoading, defaultText) {
     button.textContent = isLoading ? "Saving..." : defaultText;
   }
-
-  /* ------------------ CARDS ------------------ */
 
   function openPreviewModal(data) {
     previewImage.src = data.link;
@@ -135,8 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return cardElement;
   }
-
-  /* ------------------ EVENT LISTENERS ------------------ */
 
   editProfileBtn.addEventListener("click", () => {
     profileNameInput.value = profileNameEl.textContent;
@@ -223,8 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .finally(() => renderLoading(submitBtn, false, "Save"));
     });
   }
-
-  /* ------------------ INITIAL LOAD ------------------ */
 
   Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([userData, cards]) => {
