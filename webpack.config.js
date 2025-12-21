@@ -5,35 +5,31 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
-    main: "./scripts/index.js",
+    entry: "./src/pages/index.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
-    assetModuleFilename: "images/[hash][ext][query]",
     publicPath: "",
   },
 
   mode: "development",
   devtool: "inline-source-map",
   stats: "errors-only",
-
   devServer: {
-    static: path.resolve(__dirname, "dist"),
+    static: path.resolve(__dirname, "./dist"),
     compress: true,
     port: 8080,
     open: true,
     liveReload: true,
     hot: false,
   },
-
   target: ["web", "es5"],
-
   module: {
     rules: [
       {
         test: /\.js$/,
-        loader: "babel-loader",
+        use: "babel-loader",
         exclude: /node_modules/,
       },
       {
@@ -48,19 +44,14 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|webp|gif)$/i,
-        type: "asset/resource",
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)$/i,
+        test: /\.(png|svg|jpg|jpeg|webp|gif|woff(2)?|eot|ttf|otf)$/,
         type: "asset/resource",
       },
     ],
   },
-
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html",
+      template: "./src/index.html",
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
