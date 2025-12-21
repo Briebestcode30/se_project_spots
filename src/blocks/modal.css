@@ -199,6 +199,16 @@
   opacity: 0.6;
 }
 
+.modal__close-btn_type_delete {
+  background-image: url(../images/close__icon-light.svg);
+  position: absolute;
+  right: -40px;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
+  top: -8px;
+  transition: opacity 0.3s ease;
+}
 .modal__error {
   display: block;
   color: #ff0000b2;
