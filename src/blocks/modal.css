@@ -64,15 +64,30 @@
 .modal__form {
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.modal__options {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  background-color: #fff;
+  gap: 16px;
 }
 
 .modal__label {
-  display: flex;
+  display: block;
   flex-direction: column;
   font-size: 16px;
   color: #212121;
   gap: 8px;
-  margin-bottom: 32px;
+  margin: 32px 0;
+  line-height: 100%;
 }
 .modal__input {
   height: 52px;
@@ -91,7 +106,7 @@
 
 .modal__submit-btn {
   background-color: #212121;
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 8px;
   padding: 16px 0;
@@ -100,11 +115,39 @@
   cursor: pointer;
   transition: opacity 0.3s ease;
   width: 156px;
-  margin-top: 24px;
+  margin-right: 16px;
 }
 
 .modal__submit-btn:hover {
   opacity: 0.8;
+}
+
+.modal__delete-btn {
+  background-color: rgba(255, 101, 101, 1);
+  color: rgba(33, 33, 33, 1);
+  border: none;
+  border-radius: 8px;
+  padding: 16px 0;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  width: 156px;
+  margin-right: 16px;
+}
+
+.modal__cancel-btn {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  color: rgba(33, 33, 33, 1);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 18px 32px;
+  width: 156px;
+  height: 52px;
+  transition: opacity 0.3s ease;
 }
 
 .modal__image-container {

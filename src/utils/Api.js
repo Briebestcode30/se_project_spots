@@ -53,13 +53,13 @@ class Api {
   }
 
   likeCard(cardId) {
-    return this._request(`/cards/likes/${cardId}`, {
+    return this._request(`/cards/${cardId}/likes`, {
       method: "PUT",
     });
   }
 
   unlikeCard(cardId) {
-    return this._request(`/cards/likes/${cardId}`, {
+    return this._request(`/cards/${cardId}/likes`, {
       method: "DELETE",
     });
   }
